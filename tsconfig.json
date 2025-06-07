@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": false, // Set to false to allow Rollup to handle emit
+    "jsx": "react-jsx",
+    "declaration": true, // Generate .d.ts files
+    "outDir": "./dist", // Output directory for .d.ts files
+    "rootDir": "./src" // Specify root directory of source files
+  },
+  "include": ["src"], // Which files to include
+  "exclude": ["node_modules", "dist", "**/__tests__/*", "**/*.test.tsx"] // Which files to exclude
+}
