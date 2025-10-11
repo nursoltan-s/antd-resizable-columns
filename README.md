@@ -1,113 +1,86 @@
-# Ant Design Resizable Table
+# 🧩 antd-resizable-columns
 
-An extension of the Ant Design Table component that adds column resizing functionality.
+> A lightweight wrapper around Ant Design’s Table component that adds **column resizing** support — with full TypeScript, Ant Design v5, and React 18 compatibility.
 
-## Installation
+[![npm version](https://img.shields.io/npm/v/antd-resizable-columns.svg?color=success)](https://www.npmjs.com/package/antd-resizable-columns)
+[![license](https://img.shields.io/github/license/nursoltan-s/antd-resizable-columns.svg)](LICENSE)
+[![build](https://img.shields.io/github/actions/workflow/status/nursoltan-s/antd-resizable-columns/ci.yml?branch=main)](https://github.com/nursoltan-s/antd-resizable-columns/actions)
+[![stars](https://img.shields.io/github/stars/nursoltan-s/antd-resizable-columns?style=social)](https://github.com/nursoltan-s/antd-resizable-columns)
 
-You can install the package using npm or yarn:
+---
+
+## ✨ Features
+
+- 🪶 Simple API – works just like `antd`’s `Table`  
+- 🧱 Resizable column widths via drag handle  
+- ⚙️ Fully typed with TypeScript  
+- 📏 Optional `minWidth` and `maxWidth` per column  
+- 💾 Emits resize events to persist column sizes  
+- 🧩 Plug-and-play: no extra CSS or setup required  
+
+---
+
+## 📦 Installation
 
 ```bash
-npm install antd-resizable-table
+npm install antd-resizable-columns
 # or
-yarn add antd-resizable-table
+yarn add antd-resizable-columns
+# or
+pnpm add antd-resizable-columns
+
+
+```
+npm install antd react react-dom
 ```
 
-Make sure you have `antd` and `react` installed as peer dependencies.
+## 🚀 Usage
 
-## Usage
+```
+import React from "react";
+import { ResizableTable } from "antd-resizable-columns";
+import type { ColumnsType } from "antd/es/table";
 
-Import the `ResizableTable` component and use it like a standard Ant Design Table.
-
-```tsx
-import React from 'react';
-import { ResizableTable } from 'antd-resizable-table';
-import type { ColumnsType } from 'antd/es/table';
-
-interface DataType {
-  key: React.Key;
+interface User {
+  key: number;
   name: string;
   age: number;
   address: string;
 }
 
-const columns: ColumnsType<DataType> = [
+const columns: ColumnsType<User> = [
   {
-    title: 'Name',
-    dataIndex: 'name',
-    key: 'name',
-    width: 200, // Initial width is recommended for resizable columns
+    title: "Name",
+    dataIndex: "name",
+    width: 150,
+    minWidth: 100,
   },
   {
-    title: 'Age',
-    dataIndex: 'age',
-    key: 'age',
-    width: 100,
+    title: "Age",
+    dataIndex: "age",
+    width: 120,
   },
   {
-    title: 'Address',
-    dataIndex: 'address',
-    key: 'address',
-    // Not resizable if width is not provided
+    title: "Address",
+    dataIndex: "address",
+    width: 300,
   },
 ];
 
-const data: DataType[] = [
-  {
-    key: '1',
-    name: 'John Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-  },
-  // ...more data
+const data: User[] = [
+  { key: 1, name: "John", age: 32, address: "New York" },
+  { key: 2, name: "Mary", age: 28, address: "London" },
 ];
 
-const App: React.FC = () => (
-  <ResizableTable<DataType> columns={columns} dataSource={data} bordered />
-);
+export default function App() {
+  return (
+    <ResizableTable<User>
+      bordered
+      columns={columns}
+      dataSource={data}
+      onResize={(cols) => console.log("Resized columns:", cols)}
+    />
+  );
+}
 
-export default App;
 ```
-
-### Resizable Columns
-
-To make a column resizable, ensure you provide a `width` property in its column definition. The `ResizableTable` component uses `react-resizable` to enable resizing.
-
-## Features
-
--   Extends Ant Design's `Table` component.
--   Allows users to resize column widths by dragging the column header's edge.
--   Simple to integrate into existing Ant Design projects.
-
-## Props
-
-The `ResizableTable` component accepts all props that the standard Ant Design `Table` component accepts.
-
-## Contributing
-
-Contributions are welcome! If you have any ideas, suggestions, or bug reports, please open an issue or submit a pull request.
-
-### Development
-
-1.  Clone the repository:
-    ```bash
-    git clone https://github.com/your-username/antd-resizable-table.git
-    cd antd-resizable-table
-    ```
-2.  Install dependencies:
-    ```bash
-    npm install
-    # or
-    yarn install
-    ```
-3.  Start the development server (if you set one up for examples):
-    ```bash
-    npm run start
-    ```
-4.  Build the library:
-    ```bash
-    npm run build
-    ```
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
